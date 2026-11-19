@@ -1,0 +1,27 @@
+{
+  "subagents": {
+    "defaultModel": "command-code/deepseek/deepseek-v4.1-flash",
+    "defaultThinking": "low",
+    "agentOverrides": {
+      "scout": {
+        "model": "command-code/deepseek/deepseek-v4.1-flash",
+        "tools": "read,grep,find,ls"
+      },
+      "worker": {
+        "model": "command-code/deepseek/deepseek-v4.1-flash",
+        "tools": "read,grep,find,ls,edit,write,bash"
+      },
+      "reviewer": {
+        "model": "command-code/deepseek/deepseek-v4.1-flash",
+        "tools": "read,grep,find,ls"
+      }
+    },
+    "modelScope": {
+      "enforce": true,
+      "strict": true,
+      "allow": [
+        "command-code/deepseek/deepseek-v4.1-flash"
+      ]
+    }
+  }
+}
