@@ -179,6 +179,8 @@ pi --model anthropic/claude-opus-5-5 --tools subagent,bg_wait --append-system-pr
 
 该插件配置在每次提问前读取；配置无效会报错，**不会静默回退到 Opus**。工具集仅 `read/grep/find/ls`，不包含 `bash/edit/write`；它会继承主会话部分历史上下文，长会话可能增加 DS 的上下文处理成本。BTW 是临时问答，不是主任务编排和验收通道。
 
+**继承主会话 Prompt 的注意事项**：L2ncE BTW 会构建继承主会话的 `appendSystemPrompt`。如果 CTO 指令无条件禁止所有文件读取，BTW 可能也拒绝使用本来合法的只读工具。因此本仓库的 CTO Prompt 专门声明“只约束主会话，BTW 侧会话可以使用其只读工具”。部署后须实际测试 BTW 能查文件、主 Opus 又不能直接查文件。
+
 如果你实际上采用 `dbachelder/pi-btw`，则 `/btw:model` 可设置独立模型，但其 README 明确声明无凭据时可能回退主模型，因此**不推荐**用于本严格限制方案。
 
 ## 5. Opus → Scout → Worker → Reviewer → Opus 标准闭环
